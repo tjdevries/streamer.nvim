@@ -56,6 +56,11 @@ WinID = vim.api.nvim_open_win(BufNR, false, {
 })
 
 vim.register_keystroke_callback(function(buf)
+  -- TODO: You could extend this to a bunch of different filetypes that you want to keep secret.
+  if vim.api.nvim_buf_get_option(0, 'filetype') == 'term' then
+    return
+  end
+
   local mode = vim.api.nvim_get_mode().mode
   -- table.insert(KeysTyped, {
   --   mode = mode,
